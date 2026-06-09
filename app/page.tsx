@@ -14,6 +14,16 @@ interface Repository {
   language: string;
 }
 
+interface Article {
+  id: number;
+  title: string;
+  description: string;
+  published_at: string;
+  url: string;
+  cover_image: string;
+  tag_list: string[];
+}
+
 export default function PortfolioPage() {
   // Navigation State
   const [activeSection, setActiveSection] = useState("");
@@ -34,6 +44,10 @@ export default function PortfolioPage() {
   // GitHub Project Telemetry State
   const [repos, setRepos] = useState<Repository[]>([]);
   const [reposLoading, setReposLoading] = useState(true);
+
+  // Dev.to Articles State
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [articlesLoading, setArticlesLoading] = useState(true);
 
   // Active Section Observer
   useEffect(() => {
@@ -126,6 +140,25 @@ export default function PortfolioPage() {
       }
     }
     fetchGithubRepos();
+  }, []);
+
+  // Fetch Live Dev.to Articles
+  useEffect(() => {
+    async function fetchDevToArticles() {
+      try {
+        const res = await fetch(
+          "https://dev.to/api/articles?username=madoyakimberley&per_page=4",
+        );
+        if (!res.ok) throw new Error("Journal connection failed");
+        const data = await res.json();
+        setArticles(data);
+      } catch (err) {
+        console.error("Dev.to API stream disruption:", err);
+      } finally {
+        setArticlesLoading(false);
+      }
+    }
+    fetchDevToArticles();
   }, []);
 
   // Form Submission Handler with Validation & Error Feedback
@@ -251,6 +284,16 @@ export default function PortfolioPage() {
               }`}
             >
               CONNECT
+            </a>
+            <a
+              href="#journal"
+              className={`text-xs font-medium uppercase tracking-[0.15em] transition-all ${
+                activeSection === "journal"
+                  ? "text-[#ff79c6] border-b-2 border-[#ff79c6] pb-1"
+                  : "text-[#c8c4d5] hover:text-[#ff79c6]"
+              }`}
+            >
+              JOURNAL
             </a>
           </div>
 
@@ -711,6 +754,110 @@ export default function PortfolioPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Section: The Journal */}
+      <section
+        className="py-32 px-8 w-full max-w-[1200px] mx-auto"
+        id="journal"
+      >
+        <span className="text-xs font-medium text-[#ff79c6] uppercase tracking-[0.2em] mb-4 block">
+          04 // THE JOURNAL
+        </span>
+        <h2 className="font-serif text-3xl font-semibold text-[#e1e1ef] mb-12">
+          Latest Transmissions
+        </h2>
+
+        {articlesLoading ? (
+          <div className="py-16 text-center font-mono text-xs text-[#928f9e] tracking-widest animate-pulse bg-[#11131c]/30 rounded-md border border-white/5">
+            &gt; CONNECTING TO DEV.TO... FETCHING TRANSMISSIONS...
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {articles.map((article) => {
+              const dateObj = new Date(article.published_at);
+              const shortMonths = [
+                "JAN",
+                "FEB",
+                "MAR",
+                "APR",
+                "MAY",
+                "JUN",
+                "JUL",
+                "AUG",
+                "SEP",
+                "OCT",
+                "NOV",
+                "DEC",
+              ];
+              const formattedDate = `${shortMonths[dateObj.getMonth()]} ${String(dateObj.getDate()).padStart(2, "0")}, ${dateObj.getFullYear()}`;
+
+              const primaryTag =
+                article.tag_list && article.tag_list.length > 0
+                  ? article.tag_list[0].toUpperCase()
+                  : "TRANSMISSION";
+
+              return (
+                <div
+                  key={article.id}
+                  className="relative group/card bg-[#11131c]/40 backdrop-blur-xl border border-white/10 rounded-md p-5 flex flex-col justify-between hover:border-[#ff79c6]/50 hover:shadow-[0_0_30px_rgba(255,121,198,0.15)] transition-all duration-500 overflow-hidden"
+                >
+                  {/* Captivating ambient glow background effect inside card */}
+                  <div className="absolute -right-20 -top-20 w-40 h-40 bg-gradient-to-br from-[#bd93f9]/10 to-[#ff79c6]/10 blur-3xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                  <div className="space-y-4">
+                    <div className="w-full aspect-[16/10] relative rounded-md overflow-hidden border border-white/10 bg-[#1a1c26]">
+                      {article.cover_image ? (
+                        <Image
+                          alt={article.title}
+                          src={article.cover_image}
+                          fill
+                          unoptimized
+                          priority
+                          loading="eager"
+                          className="object-cover opacity-75 group-hover/card:opacity-100 group-hover/card:scale-105 transition-all duration-700 ease-out"
+                          sizes="(max-w-md) 100vw, 25vw"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-[#1a1c26] to-[#24273a] flex items-center justify-center text-xs text-[#928f9e]">
+                          No Preview Available
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="text-[10px] font-mono text-[#bd93f9] tracking-wider uppercase flex items-center gap-1.5">
+                      <span>{formattedDate}</span>
+                      <span className="text-white/20">//</span>
+                      <span className="text-[#ff79c6]">{primaryTag}</span>
+                    </div>
+
+                    <h3 className="text-base font-semibold text-[#e1e1ef] tracking-wide line-clamp-2 leading-snug group-hover/card:text-[#ff79c6] transition-colors duration-300">
+                      {article.title}
+                    </h3>
+
+                    <p className="text-xs text-[#c8c4d5] line-clamp-3 leading-relaxed font-sans font-light">
+                      {article.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 pt-2 border-t border-white/5">
+                    <a
+                      href={article.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs text-[#8be9fd] hover:text-[#ff79c6] uppercase tracking-wider font-semibold transition-all duration-300 group/link"
+                    >
+                      <span>View Article</span>
+                      <span className="transform group-hover/link:translate-x-1 transition-transform duration-300">
+                        ➔
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </section>
 
       {/* Section 5: Connect */}
