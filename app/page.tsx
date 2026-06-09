@@ -761,12 +761,21 @@ export default function PortfolioPage() {
         className="py-32 px-8 w-full max-w-[1200px] mx-auto"
         id="journal"
       >
-        <span className="text-xs font-medium text-[#ff79c6] uppercase tracking-[0.2em] mb-4 block">
-          04 // THE JOURNAL
-        </span>
-        <h2 className="font-serif text-3xl font-semibold text-[#e1e1ef] mb-12">
-          Latest Transmissions
-        </h2>
+        <div className="max-w-2xl mb-12">
+          <span className="text-xs font-medium text-[#ff79c6] uppercase tracking-[0.2em] mb-4 block">
+            04 // THE JOURNAL
+          </span>
+          <h2 className="font-serif text-3xl font-semibold text-[#e1e1ef] mb-4">
+            Latest Transmissions
+          </h2>
+          <p className="text-sm text-[#c8c4d5] leading-relaxed font-sans font-light">
+            Welcome to my digital logbook. This is where I write about the
+            chaotic reality of full-stack engineering—unfiltering the deep
+            dives, the late-night architectural breakthroughs, and the crazy
+            bugs encountered while shipping live code. Pull up a chair and see
+            what I'm breaking this week.
+          </p>
+        </div>
 
         {articlesLoading ? (
           <div className="py-16 text-center font-mono text-xs text-[#928f9e] tracking-widest animate-pulse bg-[#11131c]/30 rounded-md border border-white/5">
@@ -802,7 +811,7 @@ export default function PortfolioPage() {
                   key={article.id}
                   className="relative group/card bg-[#11131c]/40 backdrop-blur-xl border border-white/10 rounded-md p-5 flex flex-col justify-between hover:border-[#ff79c6]/50 hover:shadow-[0_0_30px_rgba(255,121,198,0.15)] transition-all duration-500 overflow-hidden"
                 >
-                  {/* Captivating ambient glow background effect inside card */}
+                  {/* Ambient glow background effect inside card */}
                   <div className="absolute -right-20 -top-20 w-40 h-40 bg-gradient-to-br from-[#bd93f9]/10 to-[#ff79c6]/10 blur-3xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
                   <div className="space-y-4">
@@ -847,7 +856,7 @@ export default function PortfolioPage() {
                       rel="noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs text-[#8be9fd] hover:text-[#ff79c6] uppercase tracking-wider font-semibold transition-all duration-300 group/link"
                     >
-                      <span>View Article</span>
+                      <span>Read Story</span>
                       <span className="transform group-hover/link:translate-x-1 transition-transform duration-300">
                         ➔
                       </span>
