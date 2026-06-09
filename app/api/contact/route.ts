@@ -151,8 +151,8 @@ export async function POST(request: Request) {
       subjectField: "Thank you for reaching out",
       protocolStatus: "Here is a copy of the message you sent:",
       payloadContent: `Hi ${parsedName},\n\nThank you for getting in touch! I have received your message and will get back to you as soon as possible.\n\n---\n\nYour message:\n"${message}"`,
-      buttonText: "🏠 Return to Website",
-      buttonUrl: "https://lynvistasafaris.com",
+      buttonText: "↩ Return to Website",
+      buttonUrl: "https://portfolio-theta-neon-h0l8yeezbo.vercel.app/",
     });
 
     const visitorMailOptions = {

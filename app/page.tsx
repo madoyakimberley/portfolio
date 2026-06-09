@@ -510,7 +510,6 @@ export default function PortfolioPage() {
                   "Next.js",
                   "Tailwind CSS",
                   "Framer Motion",
-                  "WebGL",
                 ].map((tech) => (
                   <span
                     key={tech}
