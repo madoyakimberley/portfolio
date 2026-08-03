@@ -646,33 +646,36 @@ export default function PortfolioPage() {
 
             {/* Certification Card */}
             <div className="bg-[#11131c]/60 backdrop-blur-xl border border-white/10 p-8 rounded-md flex flex-col justify-between gap-6 hover:border-[#ff79c6]/40 transition-all duration-300">
-              <h3 className="text-lg font-semibold text-[#e1e1ef]">
-                Certification
-              </h3>
-              <svg
-                className="w-5 h-5 text-[#ff79c6]"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
               <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-semibold uppercase tracking-widest text-[#bd93f9] block mb-1">
-                    Moringa School
-                  </span>
-                  <h3 className="text-lg font-semibold text-[#e1e1ef]">
-                    Software Engineering
-                  </h3>
-                </div>
+                <h3 className="text-lg font-semibold text-[#e1e1ef]">
+                  Certification
+                </h3>
+                <svg
+                  className="w-5 h-5 text-[#ff79c6]"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
               </div>
 
+              {/* Institution & Program Name */}
+              <div>
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-[#bd93f9] block mb-1">
+                  Moringa School
+                </span>
+                <h3 className="text-lg font-semibold text-[#e1e1ef]">
+                  Software Engineering
+                </h3>
+              </div>
+
+              {/* QR Code & Metadata Row */}
               <div className="flex items-center gap-5 pt-2">
                 {/* Scannable QR Code linking directly to Salesforce verification */}
                 <div className="p-2.5 rounded bg-[#f8f8f2] flex-shrink-0 shadow-sm">
