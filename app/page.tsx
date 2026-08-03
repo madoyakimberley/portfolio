@@ -646,10 +646,10 @@ export default function PortfolioPage() {
 
             {/* Certification Card */}
             <div className="bg-[#11131c]/60 backdrop-blur-xl border border-white/10 p-8 rounded-md flex flex-col justify-between gap-6 hover:border-[#ff79c6]/40 transition-all duration-300">
+              <h3 className="text-lg font-semibold text-[#e1e1ef]">
+                Certification
+              </h3>
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-[#e1e1ef]">
-                  Certification
-                </h3>
                 <div>
                   <span className="text-[10px] font-semibold uppercase tracking-widest text-[#bd93f9] block mb-1">
                     Moringa School
