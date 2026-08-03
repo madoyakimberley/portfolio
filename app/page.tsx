@@ -518,7 +518,7 @@ export default function PortfolioPage() {
                 03 // Architecture Matrix
               </span>
               <h2 className="font-serif text-3xl font-semibold text-[#e1e1ef]">
-                The Tech Stack & GitHub Repositories
+                The Tech Stack, GitHub Repos & Certifications
               </h2>
             </div>
             <p className="text-sm text-[#c8c4d5] max-w-sm text-right hidden md:block">
