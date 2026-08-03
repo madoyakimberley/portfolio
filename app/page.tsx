@@ -911,15 +911,19 @@ export default function PortfolioPage() {
                 distraction-free command center interface.
               </p>
               <div className="flex flex-wrap gap-2 text-xs text-[#bd93f9] font-medium pt-2">
-                <span>React</span>
+                <span>Next.js</span>
                 <span>•</span>
                 <span>Tailwind CSS</span>
                 <span>•</span>
-                <span>Express.js</span>
+                <span>Node.js</span>
                 <span>•</span>
-                <span>MongoDB</span>
+                <span>MySQL</span>
                 <span>•</span>
                 <span>Render</span>
+                <span>•</span>
+                <span>Redis</span>
+                <span>•</span>
+                <span>Docker</span>
               </div>
             </div>
           </div>
