@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import QRCode from "react-qr-code";
 
 interface Repository {
   id: number;
@@ -27,7 +28,8 @@ interface Article {
 export default function PortfolioPage() {
   // Navigation State
   const [activeSection, setActiveSection] = useState("");
-
+  const certificateUrl =
+    "https://moringa.my.salesforce-sites.com/certificateStatus?id=a0PQ200000Uyv9AMAR";
   // Form Stateful Control
   const [formData, setFormData] = useState({
     email: "",
@@ -430,10 +432,10 @@ export default function PortfolioPage() {
               01 // The Narrative
             </span>
             <h2 className="font-serif text-2xl md:text-3xl font-semibold text-[#e1e1ef] max-w-3xl leading-relaxed">
-              I am a builder of digital atmospheres. My work bridges the gap
-              between complex system logic and cinematic user experiences,
-              inspired by the serene yet technical aesthetics of modern
-              animation.
+              I build because it&apos;s fun, and because good tools should make
+              someone&apos;s life a little easier. Every project starts as a
+              real problem I want gone — and I don&apos;t stop until the
+              solution feels obvious in hindsight.
             </h2>
           </div>
         </div>
@@ -450,7 +452,7 @@ export default function PortfolioPage() {
               02 // The Difference
             </span>
             <h2 className="font-serif text-3xl font-semibold text-[#e1e1ef] leading-tight">
-              Intentionality in <br /> Every Pixel & Byte.
+              Built to earn <br /> real trust.
             </h2>
           </div>
           <div className="md:col-span-8 grid md:grid-cols-2 gap-12 pt-8 md:pt-0">
@@ -469,13 +471,13 @@ export default function PortfolioPage() {
                 />
               </svg>
               <h3 className="text-xl font-semibold text-[#e1e1ef]">
-                Systems Thinking
+                Built From Curiosity
               </h3>
               <p className="text-[#c8c4d5] leading-relaxed text-sm">
-                I don't just write code; I design ecosystems. Every component is
-                considered within the broader architecture, ensuring scalability
-                without sacrificing aesthetic cohesion. It's about building
-                foundations that support elegant facades.
+                I build because I genuinely enjoy it, and that&apos;s why I move
+                fast and keep getting better — project after project. I&apos;m
+                not chasing easy. I&apos;m chasing the kind of work a company
+                can hand to me and trust it&apos;ll get done right.
               </p>
             </div>
             <div className="flex flex-col gap-4">
@@ -493,13 +495,13 @@ export default function PortfolioPage() {
                 />
               </svg>
               <h3 className="text-xl font-semibold text-[#e1e1ef]">
-                Cinematic UI/UX
+                Problem-First Thinking
               </h3>
               <p className="text-[#c8c4d5] leading-relaxed text-sm">
-                Drawing inspiration from modern Japanese theatrical animation, I
-                treat the screen as a canvas. Depth is achieved through light
-                and refraction rather than heavy shadows, creating a serene,
-                focused environment for the user.
+                I don&apos;t start with a framework, I start with what&apos;s
+                actually broken. Every decision, down to a single component,
+                comes back to one question: does this make someone&apos;s life
+                easier? If it doesn&apos;t earn its place, it doesn&apos;t ship.
               </p>
             </div>
           </div>
@@ -593,6 +595,8 @@ export default function PortfolioPage() {
                   "Drizzle ORM",
                   "MySQL",
                   "PostgreSQL",
+                  "Redis",
+                  "Docker",
                 ].map((tech) => (
                   <span
                     key={tech}
@@ -605,11 +609,52 @@ export default function PortfolioPage() {
             </div>
 
             {/* Infrastructure Card */}
-            <div className="bg-[#11131c]/60 backdrop-blur-xl border border-white/10 p-8 rounded-md flex flex-col gap-6 hover:border-[#ff79c6]/40 transition-all duration-300">
+            <div className="bg-[#11131c]/60 backdrop-blur-xl border border-white/10 p-8 rounded-md flex flex-col justify-between gap-6 hover:border-[#ff79c6]/40 transition-all duration-300">
+              <div className="flex flex-col gap-6">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-[#e1e1ef]">
+                    Infrastructure
+                  </h3>
+                  <svg
+                    className="w-5 h-5 text-[#ff79c6]"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"
+                    />
+                  </svg>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {["AWS", "Docker", "CI/CD Pipelines", "Vercel", "Git"].map(
+                    (tech) => (
+                      <span
+                        key={tech}
+                        className="text-xs font-medium px-3 py-1.5 rounded-sm bg-[#11131c]/60 border border-white/10 text-[#c8c4d5]"
+                      >
+                        {tech}
+                      </span>
+                    ),
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Certification Card */}
+            <div className="bg-[#11131c]/60 backdrop-blur-xl border border-white/10 p-8 rounded-md flex flex-col justify-between gap-6 hover:border-[#ff79c6]/40 transition-all duration-300">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-[#e1e1ef]">
-                  Infrastructure
-                </h3>
+                <div>
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-[#bd93f9] block mb-1">
+                    Moringa School
+                  </span>
+                  <h3 className="text-lg font-semibold text-[#e1e1ef]">
+                    Software Engineering
+                  </h3>
+                </div>
                 <svg
                   className="w-5 h-5 text-[#ff79c6]"
                   fill="none"
@@ -620,21 +665,51 @@ export default function PortfolioPage() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {["AWS", "Docker", "CI/CD Pipelines", "Vercel", "Git"].map(
-                  (tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs font-medium px-3 py-1.5 rounded-sm bg-[#11131c]/60 border border-white/10 text-[#c8c4d5]"
+
+              <div className="flex items-center gap-5 pt-2">
+                {/* Scannable QR Code linking directly to Salesforce verification */}
+                <div className="p-2.5 rounded bg-[#f8f8f2] flex-shrink-0 shadow-sm">
+                  <QRCode
+                    value={certificateUrl}
+                    size={68}
+                    bgColor="#f8f8f2"
+                    fgColor="#11131c"
+                    level="M"
+                  />
+                </div>
+
+                {/* Certificate Metadata & Click/Scan Actions */}
+                <div className="flex flex-col gap-1.5 text-xs text-[#c8c4d5]">
+                  <p className="font-medium text-[#e1e1ef]">
+                    Certificate of Completion
+                  </p>
+                  <p className="text-[11px] leading-relaxed text-[#a5a1b8]">
+                    Awarded to{" "}
+                    <strong className="text-[#8be9fd] font-normal">
+                      Kimberley Madoya
+                    </strong>{" "}
+                    on 29th July, 2026.
+                  </p>
+
+                  <div className="flex items-center gap-2 pt-1">
+                    <a
+                      href={certificateUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-[11px] font-medium text-[#8be9fd] hover:text-[#ff79c6] tracking-wide flex items-center gap-1 transition-colors underline underline-offset-4"
                     >
-                      {tech}
+                      Click to view certificate ➔
+                    </a>
+                    <span className="text-[#6272a4]">•</span>
+                    <span className="text-[10px] text-[#bd93f9] tracking-wide uppercase font-mono">
+                      Scan to verify
                     </span>
-                  ),
-                )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -708,12 +783,13 @@ export default function PortfolioPage() {
         </h2>
 
         <div className="flex flex-col gap-16">
+          {/* Project 1: Lynvista Safaris */}
           <div className="grid md:grid-cols-12 gap-8 items-center group">
             <div className="md:col-span-5 w-full aspect-video rounded-md overflow-hidden border border-white/10 relative p-2 bg-[#11131c]/60">
               <div className="w-full h-full relative rounded overflow-hidden bg-[#1a1c26]">
                 <Image
                   alt="Lynvista Safaris Core Engine"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUAItfVCTYwTIsgtTbbFShFVVyqZTkeIxMKIzZOmc-crx2AiBabz1ufySHh2F91x0bnLv3V8uCZDgaapETZVlMWEyC3_GxlKPE1E0s3yTtkIUq2XixGayFJi2yo9e3Bm3xnGk_SR_wHBYFjwW6NobIApIWLJlR1QzJyaVLYfRYBTx8bF6YQEYP-ahZttqnrlGRwDN06yl7_2NRtxomibpUjDEOCr4l4N6i8sl9lVz0Wcwr7LYxIYa7Jv1xUainZtbF3PrX5OUm8nM"
+                  src="/images/lynvista.WebP"
                   fill
                   className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                   sizes="(max-w-md) 100vw, 50vw"
@@ -750,6 +826,100 @@ export default function PortfolioPage() {
                 <span>Drizzle ORM</span>
                 <span>•</span>
                 <span>Instasend</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Project 2: Salio */}
+          <div className="grid md:grid-cols-12 gap-8 items-center group">
+            <div className="md:col-span-5 w-full aspect-video rounded-md overflow-hidden border border-white/10 relative p-2 bg-[#11131c]/60">
+              <div className="w-full h-full relative rounded overflow-hidden bg-[#1a1c26]">
+                <Image
+                  alt="Salio Server Platform"
+                  src="/images/salio.WebP"
+                  fill
+                  className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                  sizes="(max-w-md) 100vw, 50vw"
+                />
+              </div>
+            </div>
+            <div className="md:col-span-7 flex flex-col gap-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-semibold text-[#e1e1ef] group-hover:text-[#ff79c6] transition-colors">
+                  Salio Platform
+                </h3>
+                <a
+                  href="https://salio-server-omega.vercel.app"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs font-medium text-[#8be9fd] hover:text-[#ff79c6] tracking-wider uppercase flex items-center gap-1 transition-colors"
+                >
+                  View Site ➔
+                </a>
+              </div>
+              <p className="text-sm md:text-base text-[#c8c4d5] leading-relaxed">
+                A robust web application and server architecture built for
+                real-time data processing and streamlined service orchestration.
+                Focused on high availability, clean API design, and responsive
+                client-server state synchronization.
+              </p>
+              <div className="flex flex-wrap gap-2 text-xs text-[#bd93f9] font-medium pt-2">
+                <span>TypeScript</span>
+                <span>•</span>
+                <span>Next.js</span>
+                <span>•</span>
+                <span>Node.js</span>
+                <span>•</span>
+                <span>REST APIs</span>
+                <span>•</span>
+                <span>Vercel</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Project 3: StudioFlow Dashboard */}
+          <div className="grid md:grid-cols-12 gap-8 items-center group">
+            <div className="md:col-span-5 w-full aspect-video rounded-md overflow-hidden border border-white/10 relative p-2 bg-[#11131c]/60">
+              <div className="w-full h-full relative rounded overflow-hidden bg-[#1a1c26]">
+                <Image
+                  alt="StudioFlow Workspace Dashboard"
+                  src="/images/studioflow.WebP"
+                  fill
+                  className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                  sizes="(max-w-md) 100vw, 50vw"
+                />
+              </div>
+            </div>
+            <div className="md:col-span-7 flex flex-col gap-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-semibold text-[#e1e1ef] group-hover:text-[#ff79c6] transition-colors">
+                  StudioFlow Dashboard
+                </h3>
+                <a
+                  href="https://studioflow-dashboard.onrender.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs font-medium text-[#8be9fd] hover:text-[#ff79c6] tracking-wider uppercase flex items-center gap-1 transition-colors"
+                >
+                  View Site ➔
+                </a>
+              </div>
+              <p className="text-sm md:text-base text-[#c8c4d5] leading-relaxed">
+                An intuitive production and workflow management dashboard
+                designed to streamline agency operations. Features interactive
+                data metrics, task tracking pipelines, and a minimal,
+                distraction-free command center interface.
+              </p>
+              <div className="flex flex-wrap gap-2 text-xs text-[#bd93f9] font-medium pt-2">
+                <span>React</span>
+                <span>•</span>
+                <span>Tailwind CSS</span>
+                <span>•</span>
+                <span>Express.js</span>
+                <span>•</span>
+                <span>MongoDB</span>
+                <span>•</span>
+                <span>Render</span>
               </div>
             </div>
           </div>
